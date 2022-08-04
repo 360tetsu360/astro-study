@@ -16,6 +16,8 @@ use panic_probe as _;
 use rp_pico as bsp;
 // use sparkfun_pro_micro_rp2040 as bsp;
 
+mod astronomy;
+
 use bsp::hal::{
     clocks::{init_clocks_and_plls, Clock},
     pac,

@@ -14,6 +14,17 @@ use std::io::Write;
 use std::path::PathBuf;
 
 fn main() {
+    cc::Build::new()
+        .opt_level(0)
+        .flag("-w")
+        .file("astronomy/source/c/astronomy.c")
+        .include("astronomy/source/c/")
+        .out_dir("target/astronomy")
+        .compile("astronomy");
+
+    println!("cargo:rustc-link-search=target/astronomy");
+
+    println!("cargo:rustc-link-lib=astronomy");
     // Put `memory.x` in our output directory and ensure it's
     // on the linker search path.
     let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
